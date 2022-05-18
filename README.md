@@ -1,2 +1,0 @@
-Tongasoa eto amin'ny Aye-aye.
-Nohon'ny "sous-exploitation" an'ny "potentiel" an'ny fihazan-tany eto amin-tsika dia teraka ito projet ito ho fitaovana hametrahana ny fizahan-tany eto Madagasikara amin'ny tena toerana sy lanja tokony hisy azy.

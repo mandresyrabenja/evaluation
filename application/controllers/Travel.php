@@ -51,12 +51,4 @@ class Travel extends CI_Controller
         $this->db->insert('travel', $data);
         redirect('travel/list');
     }
-
-    function showAll(){
-        $query=  $this->exp_category->showAll();
-        if($query){
-            $result['categories']  = $this->exp_category->showAll();
-        }
-        echo json_encode($result);
-    }
 }

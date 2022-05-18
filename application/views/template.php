@@ -28,10 +28,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="<?= site_url('travel/add') ?>">Trajet</a>
+                        <a class="nav-link" href="<?= site_url('travel/list') ?>">Trajet</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="<?= site_url('car/updateDueForm') ?>">Echéance</a>
+                        <a class="nav-link" href="<?= site_url('car/listDue') ?>">Echéance</a>
                     </li>
                 </ul>
             </div>
