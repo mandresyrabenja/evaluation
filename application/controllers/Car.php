@@ -19,10 +19,11 @@ class Car extends CI_Controller
     function list(){
         $query=  $this->car->findAllCarDetails();
         if($query){
-            $result['cars']  = $query;
+            $data['cars']  = $query;
         }
-
-        $this->load->view('car/list', $result);
+        
+        $data['page'] = $this->load->view('car/list', $data, true);
+        $this->load->view('backoffice/template', $data );
     }
 
     function listDue() {
@@ -34,6 +35,18 @@ class Car extends CI_Controller
         $data['page'] = $this->load->view('due/list', $data, true);
         
         $this->load->view('template', $data );
+    }
+
+    
+    function listDueAdmin() {
+        $query=  $this->car->findAllDueState();
+        if($query){
+            $data['dues']  = $query;
+        }
+
+        $data['page'] = $this->load->view('due/list', $data, true);
+        
+        $this->load->view('backoffice/template', $data );
     }
 
     function updateDue() {
@@ -80,14 +93,14 @@ class Car extends CI_Controller
     }
 
     function addCar() {
-        $data = array();
-        
         $carTypes = $this->carType->showAll();
         $carBrands = $this->carBrand->showAll();
         
         $data['carTypes'] = $carTypes;
         $data['carBrands'] = $carBrands;
-        $this->load->view('car/add', $data);
+        
+        $data['page'] = $this->load->view('car/add', $data, true);
+        $this->load->view('backoffice/template', $data);
     }
 
     function showAll(){

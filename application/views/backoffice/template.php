@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?= $page_title ?></title>
+    <title>Evaluation</title>
     <link rel="icon" href="<?= img_url('maki.png') ?>">
     <link rel="stylesheet" href="<?= css_url('bulma.min')?>">
     <link rel="stylesheet" href="<?= css_url('bootstrap.min')?>">
@@ -20,8 +20,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark">
             <a class="navbar-brand" href="<?= base_url() ?>">
-                <img src="<?= img_url('maki.png') ?>" alt="Aye-aye" style="height: 50px">
-                Aye-aye
+                Evaluation
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -29,13 +28,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="<?= site_url('client') ?>">Utilisateur</a>
+                        <a class="nav-link" href="<?= site_url('car/list') ?>">Voiture</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="<?= site_url('motel') ?>">Hotel</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="<?= site_url('experience') ?>">Expérience</a>
+                        <a class="nav-link" href="<?= site_url('car/listDueAdmin') ?>">Echéance</a>
                     </li>
                 </ul>
             </div>
