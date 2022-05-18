@@ -17,10 +17,11 @@ class Car extends CI_Controller
     
     
     function list(){
-        $query=  $this->car->showAll();
+        $query=  $this->car->findAllCarDetails();
         if($query){
-            $result['cars']  = $this->car->showAll();
+            $result['cars']  = $query;
         }
+
         $this->load->view('car/list', $result);
     }
 
