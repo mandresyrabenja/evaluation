@@ -1,8 +1,11 @@
-<h3 slot="head" >Ajouter une trajet</h3>
-
+<hr>
+    <ul class="nav justify-content-center" id="crud_title">
+        <li class="nav-item">Ajouter un trajet</li>
+    </ul>
+<hr>
 <div class="container">
 <form action="<?= site_url('travel/insert') ?>" method="POST" class="login">
-        <div class="row">
+        <div class="row text-success">
             <h4>Voiture</h4>
         </div>
         <select name="car_id" class="form-control">
@@ -10,7 +13,7 @@
                 <option value="<?= $car->numero ?>"><?= $car->car_model ?> - Numero: <?= $car->numero ?></option>
             <?php endforeach; ?>
         </select>
-        <div class="row">
+        <div class="row text-success">
             <h4>Départ</h4>
         </div>
         <div class="row">
@@ -33,7 +36,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row text-success">
             <h4>Arrivée</h4>
         </div>
         <div class="row">
@@ -56,7 +59,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row text-success">
             <h4>Carburant</h4>
         </div>
         <div class="row">
@@ -73,7 +76,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row text-success">
             <h4>Motif</h4>
         </div>
         <div class="col-md-4">

@@ -1,5 +1,8 @@
-<h3 slot="head" >Mettre à jour les écheances</h3>
-
+<hr>
+    <ul class="nav justify-content-center" id="crud_title">
+        <li class="nav-item">Mettre à jour les échéances</li>
+    </ul>
+<hr>
 <div class="container">
 <form action="<?= site_url('car/updateDue') ?>" method="POST" class="login">
         <div class="row">
