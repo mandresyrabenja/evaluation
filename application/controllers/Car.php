@@ -24,6 +24,17 @@ class Car extends CI_Controller
         $this->load->view('car/list', $result);
     }
 
+    function listDue() {
+        $query=  $this->car->findAllDueState();
+        if($query){
+            $data['dues']  = $query;
+        }
+
+        $data['page'] = $this->load->view('due/list', $data, true);
+        
+        $this->load->view('template', $data );
+    }
+
     function updateDue() {
 
         $car_id = $this->input->post('car_id');
@@ -36,7 +47,7 @@ class Car extends CI_Controller
         $this->db->where('numero', $car_id);
         $this->db->update('car');
 
-        redirect('due/list');
+        redirect('car/listDue');
     }
 
     function updateDueForm() {
