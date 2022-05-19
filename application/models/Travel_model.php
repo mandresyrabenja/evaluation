@@ -5,7 +5,7 @@ class Travel_model extends CI_Model
 {
 
     public function showAll(){
-      $query = $this->db->get('travel');
+      $query = $this->db->get('travel_details');
        if($query->num_rows() > 0){
            return $query->result();
        }else{
