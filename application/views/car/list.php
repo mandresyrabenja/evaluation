@@ -18,7 +18,7 @@
             <th class="text-white">Marque</th>
             <th class="text-white">Modèle</th>
             <th class="text-white">Type</th>
-            <th class="text-white">Trajet</th>
+            <th class="text-white">Lien</th>
         </thead>
             <tbody class="table-light">
                 <?php foreach($cars as $car): ?>
@@ -27,7 +27,7 @@
                         <td><?= $car->brand ?></td>
                         <td><?= $car->car_model ?></td>
                         <td><?= $car->type ?></td>
-                        <td><a href="<?= site_url('travel/carTravels?car_id=' . $car->numero) ?>">PDF</a></td>
+                        <td><a class="btn btn-success" href="<?= site_url('travel/carTravels?car_id=' . $car->numero) ?>">Trajet</a></td>
                     </tr>
                 <?php endforeach ?>
             </tbody>

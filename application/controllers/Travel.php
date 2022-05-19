@@ -15,8 +15,7 @@ class Travel extends CI_Controller
             $carId = $this->input->get('car_id');
             $data['travels'] =  $this->travel->findCarTravels($carId);
             
-            $data['page'] = $this->load->view('travel/list', $data, true);
-            $this->load->view('template', $data );
+            $data['page'] = $this->load->view('travel/topdf', $data);
         }
     }
 
