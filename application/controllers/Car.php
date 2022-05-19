@@ -1,10 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
-/**
- * Class Car<br>
- * Controller du table Car
- */
 class Car extends CI_Controller
 {
 
@@ -14,7 +9,13 @@ class Car extends CI_Controller
         $this->load->model('carType_model', 'carType');
         $this->load->model('carBrand_model', 'carBrand');
     }
-    
+
+    function availableCars() {
+        $data['cars'] = $this->car->findAllAvailableCars();
+
+        $data['page'] = $this->load->view('car/availableCars', $data, true);
+        $this->load->view('template', $data );
+    }
     
     function list(){
         $query=  $this->car->findAllCarDetails();
