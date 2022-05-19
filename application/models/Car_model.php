@@ -34,11 +34,38 @@ class Car_model extends CI_Model
         };
     }
     public function showAll(){
-        $query = $this->db->get('car');
+        $query = $this->db->get('car_details');
          if($query->num_rows() > 0){
              return $query->result();
          }else{
              return false;
          }
      }
+
+     public function findAllAvailableCars() {
+        
+        // Seul les voitures disponible sont peuvent être utilisé
+        // Une voiture est disponible le destination de son dernier voyage est le garage
+        $cars = $this->showAll();
+        $availableCars = array();
+        foreach($cars as $car) {
+            $query = $this->db->query("
+                SELECT 
+                    car.numero, car_brand.name, car.car_model, travel.start_place, travel.start_time,  travel.end_place, travel.end_time, travel.reason, travel.start_km, travel.end_km
+                FROM
+                    car JOIN travel ON car.numero = travel.car_id
+                    JOIN car_brand ON car.car_brand_id = car_brand.id
+                WHERE
+                    car.numero = '" . $car->numero ."'
+                ORDER BY
+                    travel.end_time DESC
+                LIMIT
+                    1"
+            );
+            $lastCarTravel = $query->result();
+            if($lastCarTravel != null && strtoupper($lastCarTravel[0]->end_place) == 'GARAGE')
+                array_push($availableCars, $car);
+        }
+        return $availableCars;
+   }
 }

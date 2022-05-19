@@ -11,7 +11,8 @@ class Travel extends CI_Controller
     }
     
     function add() {
-        $data['cars'] = $this->car->showAll();
+        $data['cars'] = $this->car->findAllAvailableCars();
+        
         $data['page'] = $this->load->view('travel/add', $data, true);
         $this->load->view('template', $data );
     }
