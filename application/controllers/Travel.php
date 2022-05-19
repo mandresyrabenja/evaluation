@@ -13,6 +13,16 @@ class Travel extends CI_Controller
     function add() {
         $data['cars'] = $this->car->findDriverAvailableCars();
         
+        # Si il y a une erreur de saisie de formulaire
+        if( null !== $this->input->get('error') ) {
+            $error = $this->input->get('error');
+            if($error == 'km') {
+                $start_km = $this->input->get('start_km');
+                $end_km = $this->input->get('end_km');
+                $data['errorMsg'] = 'Le kilometrage d\'arrivé('. $end_km .'km) devait être supérieur au kilometrage de départ('. $start_km .'km)';
+            }
+        }
+
         $data['page'] = $this->load->view('travel/add', $data, true);
         $this->load->view('template', $data );
     }
@@ -36,6 +46,10 @@ class Travel extends CI_Controller
         $fuel_price = $this->input->post('fuel_price');
         $reason = $this->input->post('reason');
 
+        # Le kilometrage de départ doit être inférieur au kilometrage d'arrivé
+        if($start_km > $end_km)
+            redirect('travel/add?error=km&start_km='.$start_km.'&end_km='.$end_km);
+
         $data = array(
             'car_id' => $car_id,
             'start_time' => $start_time,
@@ -49,7 +63,7 @@ class Travel extends CI_Controller
             'reason' => $reason,
             'driver_id' => $this->session->userdata('driver_id')
         );
-        $this->db->insert('travel', $data);
+        // $this->db->insert('travel', $data);
         redirect('travel/list');
     }
 }
