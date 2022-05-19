@@ -64,10 +64,8 @@ class Car_model extends CI_Model
                     1"
             );
             $lastCarTravel = $query->result();
-            if($lastCarTravel != null) { 
-                if( (strtoupper($lastCarTravel[0]->end_place) == 'GARAGE') || $lastCarTravel[0]->driver_id == $this->session->userdata('driver_id') )
+            if( empty($lastCarTravel) || (strtoupper($lastCarTravel[0]->end_place) == 'GARAGE') || $lastCarTravel[0]->driver_id == $this->session->userdata('driver_id') )
                     array_push($availableCars, $car);
-            }
         }
         return $availableCars;
     }
@@ -93,7 +91,7 @@ class Car_model extends CI_Model
                     1"
             );
             $lastCarTravel = $query->result();
-            if($lastCarTravel != null && strtoupper($lastCarTravel[0]->end_place) == 'GARAGE')
+            if( empty($lastCarTravel) || strtoupper($lastCarTravel[0]->end_place) == 'GARAGE')
                 array_push($availableCars, $car);
         }
         return $availableCars;

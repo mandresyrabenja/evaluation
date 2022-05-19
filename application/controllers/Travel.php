@@ -30,10 +30,10 @@ class Travel extends CI_Controller
                 $end_km = $this->input->get('end_km');
                 $data['errorMsg'] = 'Le kilometrage d\'arrivé('. $end_km .'km) devait être supérieur au kilometrage de départ('. $start_km .'km)';
             }
-            if($error = 'speed') {
+            if($error == 'speed') {
                 $data['errorMsg'] = 'La vitesse moyenne doit être inférieur ou égale à 72km/h. Votre vitesse est ' . $this->input->get('speed') . 'km/h';
             }
-            if($error = 'time') {
+            if($error == 'time') {
                 $data['errorMsg'] = "L'heure de départ doît être avant l'heure d'arrivé";
             }
         }
