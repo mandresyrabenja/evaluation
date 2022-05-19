@@ -36,6 +36,9 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="<?= site_url('car/availableCars') ?>">Véhicules disponible</a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?= site_url('car/updateMaintenanceForm') ?>">Maintenance</a>
+                    </li>
                 </ul>
             </div>
         </nav>

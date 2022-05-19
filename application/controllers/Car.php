@@ -10,6 +10,28 @@ class Car extends CI_Controller
         $this->load->model('carBrand_model', 'carBrand');
     }
 
+
+    function updateMaintenance() {
+        $car_id = $this->input->post('car_id');
+        $maintenance = $this->input->post('maintenance');
+
+        if($maintenance == 'oil_change')
+            $this->db->set('oil_change', 5000);
+        elseif($maintenance == 'tire')
+            $this->db->set('tire', 2000);
+        $this->db->where('numero', $car_id);
+        $this->db->update('car');
+
+        // redirect('car/listDue');
+    }
+
+    function updateMaintenanceForm() {
+        $data['cars'] = $this->car->showAll();
+        $data['page'] = $this->load->view('maintenance/update', $data, true);
+        
+        $this->load->view('backoffice/template', $data );
+    }
+
     function availableCars() {
         $data['cars'] = $this->car->findAllAvailableCars();
 
