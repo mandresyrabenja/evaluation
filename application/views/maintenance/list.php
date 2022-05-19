@@ -1,6 +1,6 @@
 <hr>
 <ul class="nav justify-content-center" id="crud_title">
-    <li class="nav-item">Etats des écheances</li>
+    <li class="nav-item">Etats des maintenances</li>
 </ul>
 <hr>
 
@@ -8,7 +8,7 @@
         <div class="row">    
             <div class="col-md-10"></div>
             <div class="col-md-2">
-                <a class="btn btn-success btn-block" href="<?= site_url('car/updateDueForm') ?>">Mise à jour</a></td>
+                <a class="btn btn-success btn-block" href="<?= site_url('car/updateMaintenanceForm') ?>">Mise à jour</a></td>
             </div>
         </div>
     <div class="row">
@@ -18,43 +18,22 @@
                 <th class="text-white">Numero de voiture</th>
                 <th class="text-white">Marque</th>
                 <th class="text-white">Modèle</th>
-                <th class="text-white">Type</th>
-                <th class="text-white">Echéance assurance</th>
-                <th class="text-white">Echéance technique</th>
-                
+                <th class="text-white">Vidange</th>
+                <th class="text-white">Pneu</th>
             </thead>
                 <tbody class="table-light">
                     <?php 
-                        foreach($dues as $due):
-                            if( ($due->insurance_day_left < 15) || ($due->tech_day_left < 15) )
-                                $bgColor = 'danger';
-                            else
-                                $bgColor = 'warning';
+                        foreach($cars as $car):
                     ?>
-                        <tr class="table-default bg-<?= $bgColor ?>">
-                            <td><?= $due->numero ?></td>
-                            <td><?= $due->brand ?></td>
-                            <td><?= $due->car_model ?></td>
-                            <td><?= $due->type ?></td>
-                            <td>
-                                <?= $due->insurance ?>
-                                <?php if($due->insurance_day_left > 0) : ?> 
-                                    (dans <?= $due->insurance_day_left ?> jours)
-                                <?php elseif($due->insurance_day_left == 0) : ?> 
-                                    (Aujourdhui)
-                                <?php else : ?> 
-                                    (Il y a <?= $due->insurance_day_left * -1 ?> jours)
-                                <?php endif ?>
+                        <tr>
+                            <td><?= $car->numero ?></td>
+                            <td><?= $car->brand ?></td>
+                            <td><?= $car->car_model ?></td>
+                            <td class="<?= ($car->oil_change < 200) ? 'bg-danger' :  ( ($car->oil_change < 500) ? 'bg-warning' : '' ) ?>">
+                                <?= $car->oil_change ?>
                             </td>
-                            <td>
-                                <?= $due->technical_visit ?>
-                                <?php if($due->tech_day_left > 0) : ?> 
-                                    (dans <?= $due->tech_day_left ?> jours)
-                                <?php elseif($due->tech_day_left == 0) : ?> 
-                                    (Aujourdhui)
-                                <?php else : ?> 
-                                    (Il y a <?= $due->tech_day_left * -1 ?> jours)
-                                <?php endif ?>
+                            <td class="<?= ($car->tire < 200) ? 'bg-danger' :  ( ($car->tire < 500) ? 'bg-warning' : '' ) ?>">
+                                <?= $car->tire ?>
                             </td>
                         </tr>
                     <?php endforeach ?>
