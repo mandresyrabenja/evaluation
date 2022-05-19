@@ -9,7 +9,16 @@ class Travel extends CI_Controller
         $this->load->model('travel_model', 'travel');
         $this->load->model('car_model', 'car');
     }
-    
+
+    function carTravels() {
+        if(null !== $this->input->get('car_id')) {
+            $carId = $this->input->get('car_id');
+            $data['travels'] =  $this->travel->findCarTravels($carId);
+            
+            $data['page'] = $this->load->view('travel/topdf', $data);
+        }
+    }
+
     function add() {
         $data['cars'] = $this->car->findDriverAvailableCars();
         
