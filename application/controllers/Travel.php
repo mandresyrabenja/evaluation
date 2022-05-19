@@ -93,7 +93,14 @@ class Travel extends CI_Controller
             'reason' => $reason,
             'driver_id' => $this->session->userdata('driver_id')
         );
-        // $this->db->insert('travel', $data);
-        // redirect('travel/list');
+        $this->db->insert('travel', $data);
+        
+        # Kilometrage restant du vidange et pneu du voiture
+        $this->db->set('oil_change', 'oil_change-'.$travel_km, FALSE);
+        $this->db->set('tire', 'tire-'.$travel_km, FALSE);
+        $this->db->where('numero', $car_id);
+        $this->db->update('car');
+
+        redirect('travel/list');
     }
 }
