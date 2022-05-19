@@ -33,6 +33,9 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="<?= site_url('car/listDue') ?>">Echéance</a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="<?= site_url('car/availableCars') ?>">Véhicules disponible</a>
+                    </li>
                 </ul>
             </div>
         </nav>
