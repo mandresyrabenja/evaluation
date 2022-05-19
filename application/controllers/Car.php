@@ -10,7 +10,6 @@ class Car extends CI_Controller
         $this->load->model('carBrand_model', 'carBrand');
     }
 
-
     function updateMaintenance() {
         $car_id = $this->input->post('car_id');
         $maintenance = $this->input->post('maintenance');
@@ -22,7 +21,17 @@ class Car extends CI_Controller
         $this->db->where('numero', $car_id);
         $this->db->update('car');
 
-        // redirect('car/listDue');
+        redirect('car/maintenanceList');
+    }
+
+    function maintenanceList() {
+        $query=  $this->car->findAllCarDetails();
+        if($query){
+            $data['cars']  = $query;
+        }
+        
+        $data['page'] = $this->load->view('maintenance/list', $data, true);
+        $this->load->view('backoffice/template', $data );
     }
 
     function updateMaintenanceForm() {
