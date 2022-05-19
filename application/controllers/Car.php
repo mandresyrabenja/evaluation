@@ -87,11 +87,14 @@ class Car extends CI_Controller
         $insurance = $this->input->post('insurance');
         $technical_visit = $this->input->post('technical_visit');
 
-        
-        $this->db->set('insurance', $insurance);
-        $this->db->set('technical_visit', $technical_visit);
-        $this->db->where('numero', $car_id);
-        $this->db->update('car');
+        if($insurance != '' || $technical_visit != '') {
+            if($insurance != '')
+                $this->db->set('insurance', $insurance);
+            if($technical_visit != '')
+                $this->db->set('technical_visit', $technical_visit);
+            $this->db->where('numero', $car_id);
+            $this->db->update('car');
+        }
 
         redirect('car/listDue');
     }

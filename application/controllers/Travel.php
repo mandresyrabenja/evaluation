@@ -30,8 +30,11 @@ class Travel extends CI_Controller
                 $end_km = $this->input->get('end_km');
                 $data['errorMsg'] = 'Le kilometrage d\'arrivé('. $end_km .'km) devait être supérieur au kilometrage de départ('. $start_km .'km)';
             }
-            if($error = 'speed') {
+            if($error == 'speed') {
                 $data['errorMsg'] = 'La vitesse moyenne doit être inférieur ou égale à 72km/h. Votre vitesse est ' . $this->input->get('speed') . 'km/h';
+            }
+            if($error == 'time') {
+                $data['errorMsg'] = "L'heure de départ doît être avant l'heure d'arrivé";
             }
         }
 
@@ -62,10 +65,14 @@ class Travel extends CI_Controller
         if($start_km > $end_km)
             redirect('travel/add?error=km&start_km='.$start_km.'&end_km='.$end_km);
         
-        # Calcul du vitesse moyenne du trajet
-        $travel_km = $end_km - $start_km;
+        # L'heure de départ doît être avant l'heure d'arrivé
         $start_dateTime = new DateTime($start_time);
         $end_dateTime = new DateTime($end_time);
+        if($start_dateTime >= $end_dateTime)
+            redirect('travel/add?error=time');
+
+        # Calcul du vitesse moyenne du trajet
+        $travel_km = $end_km - $start_km;
         $interval = $start_dateTime->diff($end_dateTime);
         $speed = $travel_km/$interval->h;
         
@@ -87,6 +94,13 @@ class Travel extends CI_Controller
             'driver_id' => $this->session->userdata('driver_id')
         );
         $this->db->insert('travel', $data);
+        
+        # Kilometrage restant du vidange et pneu du voiture
+        $this->db->set('oil_change', 'oil_change-'.$travel_km, FALSE);
+        $this->db->set('tire', 'tire-'.$travel_km, FALSE);
+        $this->db->where('numero', $car_id);
+        $this->db->update('car');
+
         redirect('travel/list');
     }
 }
