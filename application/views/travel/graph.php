@@ -13,15 +13,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	body{
 		font-weight: bold;
 	}
+    hr {
+        border: 1px solid red;
+    }
 </style>
 
 <body>
+    <div class="container-fuild">
+		<hr>
+        <div class="row">
+			<div class="col-md-12 text-center text-success">
+                <h3>Trajet total par jour du voiture numero <?= $car_id ?></h3>
+            </div>
+		</div>
+        <hr>
+    </div>
 	<div class="container" id>
 		<div class="row">
-			<div class="col-md-12"><h2>Trajet total par jour</h2></div>
-		</div>
-		<div class="row">
-			<div class="col-md-8">
+			<div class="col-md-5">
 				<div>
 					<canvas id="myChart"></canvas>
 				</div>
