@@ -10,6 +10,23 @@ class Travel extends CI_Controller
         $this->load->model('car_model', 'car');
     }
 
+    function graph() {
+        if( null !== $this->input->get('car_id') ) {
+            $data['car_id'] = $this->input->get('car_id');
+            
+            $this->load->view('travel/graph', $data);
+        }
+    }
+
+    function carDailyTravel() {
+        if( null !== $this->input->get('car_id') ) {
+            $car_id = $this->input->get('car_id');
+            $this->db->where('car_id', $car_id);
+            $carDailyTravels = $this->db->get('car_daily_travel')->result();
+            echo json_encode($carDailyTravels);
+        }
+    }
+
     function carTravels() {
         if(null !== $this->input->get('car_id')) {
             $carId = $this->input->get('car_id');
