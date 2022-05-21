@@ -1,22 +1,24 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 if(!function_exists('assets_url')){
     function assets_url($url) : string{
         return base_url()."assets/".$url."";
     }
 }
+
 /**
      * @param mixed $url = nomFichier dans le dossier assets/css/
      *
      * @return string = assets/css/(nomFichier).css
      */
-if(!function_exists('css_url')){
-    function css_url($url) : string{
-        return base_url()."assets/css/".$url.".css";
+    if(!function_exists('css_url')){
+        function css_url($url) : string{
+            return base_url()."assets/css/".$url.".css";
+        }
     }
-}
 
-/**
+    /**
      * @param mixed $url = nomFichier dans le dossier assets/js/
      *
      * @return string = assets/js/(nomFichier).js
@@ -26,7 +28,8 @@ if(!function_exists('css_url')){
             return base_url()."assets/js/".$url.".js";
         }
     }
-/**
+    
+    /**
      * @param mixed $url = nomFichier dans le dossier assets/img/
      *
      * @return string = assets/img/(nomFichier)
@@ -37,7 +40,7 @@ if(!function_exists('css_url')){
         }
     }
 
-/**
+    /**
      * @param mixed $url = image dans le dossier assets/img/hotel
      *
      * @return string = assets/img/hotel/(image)
@@ -48,7 +51,7 @@ if(!function_exists('css_url')){
         }
     }
 
-/**
+    /**
      * @param mixed $url = image dans le dossier assets/img/experience
      *
      * @return string = assets/img/experience/(image)

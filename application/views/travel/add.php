@@ -9,9 +9,15 @@
                 <h4>Voiture</h4>
             </div>
             <select name="car_id" class="form-control">
-                <?php foreach($cars as $car) : ?>
-                    <option value="<?= $car->numero ?>"><?= $car->car_model ?> - Numero: <?= $car->numero ?></option>
-                <?php endforeach; ?>
+                <?php
+                if(isset($cars) && !empty($cars)) : 
+                    foreach($cars as $car): 
+                ?>
+                        <option value="<?= $car->numero ?>"><?= $car->car_model ?> - Numero: <?= $car->numero ?></option>
+                <?php 
+                    endforeach;
+                endif; 
+                ?>
             </select>
             <div class="row text-success">
                 <h4>Départ</h4>

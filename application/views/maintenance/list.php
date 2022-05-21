@@ -22,21 +22,25 @@
                 <th class="text-white">Pneu</th>
             </thead>
                 <tbody class="table-light">
-                    <?php 
-                        foreach($cars as $car):
-                    ?>
-                        <tr>
-                            <td><?= $car->numero ?></td>
-                            <td><?= $car->brand ?></td>
-                            <td><?= $car->car_model ?></td>
-                            <td class="<?= ($car->oil_change < 200) ? 'bg-danger' :  ( ($car->oil_change < 500) ? 'bg-warning' : '' ) ?>">
-                                <?= $car->oil_change ?>
-                            </td>
-                            <td class="<?= ($car->tire < 200) ? 'bg-danger' :  ( ($car->tire < 500) ? 'bg-warning' : '' ) ?>">
-                                <?= $car->tire ?>
-                            </td>
-                        </tr>
-                    <?php endforeach ?>
+                        <?php
+                        if(isset($cars) && !empty($cars)) : 
+                            foreach($cars as $car): 
+                        ?>
+                            <tr>
+                                <td><?= $car->numero ?></td>
+                                <td><?= $car->brand ?></td>
+                                <td><?= $car->car_model ?></td>
+                                <td class="<?= ($car->oil_change < 200) ? 'bg-danger' :  ( ($car->oil_change < 500) ? 'bg-warning' : '' ) ?>">
+                                    <?= $car->oil_change ?>
+                                </td>
+                                <td class="<?= ($car->tire < 200) ? 'bg-danger' :  ( ($car->tire < 500) ? 'bg-warning' : '' ) ?>">
+                                    <?= $car->tire ?>
+                                </td>
+                            </tr>
+                        <?php 
+                            endforeach;
+                        endif; 
+                        ?>
                 </tbody>
             </table>
         </div>

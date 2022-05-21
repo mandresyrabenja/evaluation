@@ -45,10 +45,23 @@ class Car_model extends CI_Model
      
      public function findDriverAvailableCars() {
         
-        // Seul les voitures disponible sont peuvent être utilisé
-        // Une voiture est disponible le destination de son dernier voyage est le garage
-        $cars = $this->showAll();
+        # Seul les voitures disponible sont peuvent être utilisé, une voiture est disponible si: 
+        # - ses échéances(assurance, visite technique) sont valide
+        # - ses éléments de maintenances(vidange, pneu) peuvent être encore utilisés
+        # - le destination de son dernier voyage est le garage
+        $query = $this->db->query(
+            "
+            SELECT * FROM car_details
+            WHERE
+                insurance IS NOT NULL
+                AND technical_visit IS NOT NULL
+                AND ( to_days(technical_visit) - to_days(curdate()) ) > 1
+                AND ( to_days(insurance) - to_days(curdate()) ) > 1 
+            "
+        );
+        $cars = $query->result();
         $availableCars = array();
+        
         foreach($cars as $car) {
             $query = $this->db->query("
                 SELECT 
@@ -72,10 +85,23 @@ class Car_model extends CI_Model
 
      public function findAllAvailableCars() {
         
-        // Seul les voitures disponible sont peuvent être utilisé
-        // Une voiture est disponible le destination de son dernier voyage est le garage
-        $cars = $this->showAll();
+        # Seul les voitures disponible sont peuvent être utilisé, une voiture est disponible si: 
+        # - ses échéances(assurance, visite technique) sont valide
+        # - ses éléments de maintenances(vidange, pneu) peuvent être encore utilisés
+        # - le destination de son dernier voyage est le garage
+        $query = $this->db->query(
+            "
+            SELECT * FROM car_details
+            WHERE
+                insurance IS NOT NULL
+                AND technical_visit IS NOT NULL
+                AND ( to_days(technical_visit) - to_days(curdate()) ) > 1
+                AND ( to_days(insurance) - to_days(curdate()) ) > 1 
+            "
+        );
+        $cars = $query->result();
         $availableCars = array();
+        
         foreach($cars as $car) {
             $query = $this->db->query("
                 SELECT 

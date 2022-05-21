@@ -1,10 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-/**
- * Class Admin<br>
- * Controller du table Admin
- */
 class Admin extends CI_Controller
 {
 

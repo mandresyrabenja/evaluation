@@ -1,10 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
-/**
- * Class Client<br>
- * Controller du table client
- */
 class Driver extends CI_Controller
 {
     function __construct() {

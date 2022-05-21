@@ -47,6 +47,14 @@ class Car extends CI_Controller
         $data['page'] = $this->load->view('car/availableCars', $data, true);
         $this->load->view('template', $data );
     }
+
+    
+    function adminAvailableCars() {
+        $data['cars'] = $this->car->findAllAvailableCars();
+
+        $data['page'] = $this->load->view('car/availableCars', $data, true);
+        $this->load->view('backoffice/template', $data );
+    }
     
     function list(){
         $query=  $this->car->findAllCarDetails();

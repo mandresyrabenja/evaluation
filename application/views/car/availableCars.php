@@ -14,14 +14,20 @@
             <th class="text-white">Type</th>
         </thead>
             <tbody class="table-light">
-                <?php foreach($cars as $car): ?>
+                <?php
+                if(isset($cars) && !empty($cars)) : 
+                    foreach($cars as $car): 
+                ?>
                     <tr class="table-default">
                         <td><?= $car->numero ?></td>
                         <td><?= $car->brand ?></td>
                         <td><?= $car->car_model ?></td>
                         <td><?= $car->type ?></td>
                     </tr>
-                <?php endforeach ?>
+                <?php 
+                    endforeach;
+                endif; 
+                ?>
             </tbody>
         </table>
     </div>

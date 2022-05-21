@@ -23,9 +23,15 @@
                     <div class="form-group">
                         <label>Marque</label>
                         <select name="car_brand" class="form-control">
-                            <?php foreach($carBrands as $carBrand) : ?>
+                            <?php 
+                            if(isset($carBrands) && !empty($carBrands)) :
+                                foreach($carBrands as $carBrand) : 
+                            ?>
                                 <option value="<?= $carBrand->id ?>"><?= $carBrand->name ?></option>
-                            <?php endforeach; ?>
+                            <?php 
+                                endforeach;
+                            endif;
+                            ?>
                         </select>                
                     </div>           
                 </div>
@@ -33,9 +39,15 @@
                     <div class="form-group">
                         <label>Type</label>
                         <select name="car_type" class="form-control">
-                        <?php foreach($carTypes as $carType) : ?>
+                        <?php 
+                            if(isset($carTypes) && !empty($carTypes)) :
+                            foreach($carTypes as $carType) : 
+                        ?>
                             <option value="<?= $carType->id ?>"><?= $carType->name ?></option>
-                        <?php endforeach; ?>
+                        <?php 
+                            endforeach;
+                        endif;
+                        ?>
                         </select>
                     </div>           
                 </div>

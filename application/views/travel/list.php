@@ -33,19 +33,24 @@
             </thead>
                 <tbody class="table-light">
                     
-                    <?php foreach($travels as $travel): ?>
-                        <tr class="table-default">
-                            <td><?= $travel->car_id ?></td>
-                            <td><?= $travel->driver ?></td>
-                            <td><?= $travel->reason ?></td>
-                            <td><?= $travel->start_place ?></td>
-                            <td><?= $travel->start_time ?></td>
-                            <td><?= $travel->start_km ?></td>
-                            <td><?= $travel->end_place ?></td>
-                            <td><?= $travel->end_time ?></td>
-                            <td><?= $travel->end_km ?></td>
-                        </tr>
-                    <?php endforeach ?>
+                    <?php
+                        if(isset($travels) && !empty($travels)):
+                            foreach($travels as $travel): ?>
+                                <tr class="table-default">
+                                    <td><?= $travel->car_id ?></td>
+                                    <td><?= $travel->driver ?></td>
+                                    <td><?= $travel->reason ?></td>
+                                    <td><?= $travel->start_place ?></td>
+                                    <td><?= $travel->start_time ?></td>
+                                    <td><?= $travel->start_km ?></td>
+                                    <td><?= $travel->end_place ?></td>
+                                    <td><?= $travel->end_time ?></td>
+                                    <td><?= $travel->end_km ?></td>
+                                </tr>
+                    <?php 
+                            endforeach;
+                        endif; 
+                    ?>
                 </tbody>
             </table>
         </div>

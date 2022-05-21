@@ -34,7 +34,7 @@
                         <a class="nav-link" href="<?= site_url('car/listDueAdmin') ?>">Echéance</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="<?= site_url('car/availableCars') ?>">Véhicules disponible</a>
+                        <a class="nav-link" href="<?= site_url('car/adminAvailableCars') ?>">Véhicules disponible</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link" href="<?= site_url('car/maintenanceList') ?>">Maintenance</a>

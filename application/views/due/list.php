@@ -25,39 +25,38 @@
             </thead>
                 <tbody class="table-light">
                     <?php 
-                        foreach($dues as $due):
-                            if( ($due->insurance_day_left < 15) || ($due->tech_day_left < 15) )
-                                $bgColor = 'danger';
-                            else
-                                $bgColor = 'warning';
+                    if(isset($dues) && !empty($dues)) :
+                        foreach($dues as $due): ?>
+                            <tr class="table-default">
+                                <td><?= $due->numero ?></td>
+                                <td><?= $due->brand ?></td>
+                                <td><?= $due->car_model ?></td>
+                                <td><?= $due->type ?></td>
+                                <td class="<?= ($due->insurance_day_left < 15) ? 'bg-danger' : 'bg-warning' ?>" >
+                                    <?= $due->insurance ?>
+                                    <?php if($due->insurance_day_left > 0) : ?> 
+                                        (dans <?= $due->insurance_day_left ?> jours)
+                                    <?php elseif($due->insurance_day_left == 0) : ?> 
+                                        (Aujourdhui)
+                                    <?php else : ?> 
+                                        (Il y a <?= $due->insurance_day_left * -1 ?> jours)
+                                    <?php endif ?>
+                                </td>
+                                <td class="<?= ($due->tech_day_left < 15) ? 'bg-danger' : 'bg-warning' ?>" >
+                                    <?= $due->technical_visit ?>
+                                    <?php if($due->tech_day_left > 0) : ?> 
+                                        (dans <?= $due->tech_day_left ?> jours)
+                                    <?php elseif($due->tech_day_left == 0) : ?> 
+                                        (Aujourdhui)
+                                    <?php else : ?> 
+                                        (Il y a <?= $due->tech_day_left * -1 ?> jours)
+                                    <?php endif ?>
+                                </td>
+                            </tr>
+                    <?php 
+                        endforeach;
+                    endif; 
                     ?>
-                        <tr class="table-default bg-<?= $bgColor ?>">
-                            <td><?= $due->numero ?></td>
-                            <td><?= $due->brand ?></td>
-                            <td><?= $due->car_model ?></td>
-                            <td><?= $due->type ?></td>
-                            <td>
-                                <?= $due->insurance ?>
-                                <?php if($due->insurance_day_left > 0) : ?> 
-                                    (dans <?= $due->insurance_day_left ?> jours)
-                                <?php elseif($due->insurance_day_left == 0) : ?> 
-                                    (Aujourdhui)
-                                <?php else : ?> 
-                                    (Il y a <?= $due->insurance_day_left * -1 ?> jours)
-                                <?php endif ?>
-                            </td>
-                            <td>
-                                <?= $due->technical_visit ?>
-                                <?php if($due->tech_day_left > 0) : ?> 
-                                    (dans <?= $due->tech_day_left ?> jours)
-                                <?php elseif($due->tech_day_left == 0) : ?> 
-                                    (Aujourdhui)
-                                <?php else : ?> 
-                                    (Il y a <?= $due->tech_day_left * -1 ?> jours)
-                                <?php endif ?>
-                            </td>
-                        </tr>
-                    <?php endforeach ?>
                 </tbody>
             </table>
         </div>
